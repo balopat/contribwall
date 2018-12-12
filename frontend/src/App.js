@@ -35,7 +35,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1> Wall of contributors for minikube!</h1>
+                <h1> Wall of contributors for minikube! Hello KubeCon!</h1>
                 {this.state.contributors}
             </div>
         );

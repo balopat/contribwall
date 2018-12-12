@@ -21,15 +21,33 @@ import (
 	"fmt"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 )
 
-const TOKEN = "yourtoken"
+var token string
 
 func main() {
 	fmt.Println("Starting contributors server...")
+	if _, err := os.Stat("token"); os.IsNotExist(err) {
+		fmt.Printf("Can't find token file: %s", err)
+		os.Exit(1)
+	}
+	t, err := ioutil.ReadFile("token")
+	if err != nil {
+		fmt.Printf("Can't read token file: %s", err)
+		os.Exit(1)
+	}
+	token = string(t)
+	if token == "yourtoken" {
+		fmt.Println("CHANGE YOUR GITHUB TOKEN IN backend/svc-contributors/token!!!")
+		os.Exit(1)
+	}
+
+	fmt.Print(token)
+
 	http.HandleFunc("/contributors", contributorsHandler())
 	log.Fatal(http.ListenAndServe(":8000", nil))
 
@@ -86,13 +104,9 @@ func contributorsHandler() func(http.ResponseWriter, *http.Request) {
 }
 
 func NewClient() (*github.Client, context.Context) {
-	if TOKEN == "yourtoken" {
-		fmt.Println("CHANGE YOUR GITHUB TOKEN IN backend/svc-contributors/svc/contributors/contributors.go!!!")
-		os.Exit(1)
-	}
 	ctx := context.Background()
 	ts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: TOKEN},
+		&oauth2.Token{AccessToken: token},
 	)
 	tc := oauth2.NewClient(ctx, ts)
 	client := github.NewClient(tc)
