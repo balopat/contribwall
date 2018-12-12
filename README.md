@@ -7,6 +7,7 @@ To try it out you'll need:
 1. [Docker](http://docker.io)
 1. [skaffold](http://skaffold.dev)
 1. [minikube](http://github.com/kubernetes/minikube)   
+1. kubectl
 1. [get an API token from github](https://github.com/settings/tokens) 
  
 Steps: 
