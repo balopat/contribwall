@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app:  frontend
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  selector:
+    app: frontend
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      annotations:
+        io.kubernetes.cri.untrusted-workload: "true"
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/balintp-gcp-lab/contribwall-ui
+        ports:
+        - containerPort: 3000
