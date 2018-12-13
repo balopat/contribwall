@@ -25,29 +25,27 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 var token string
 
 func main() {
-	fmt.Println("Starting contributors server...")
+	fmt.Println("Starting contributors server, searching for TOKEN...")
 	if _, err := os.Stat("token"); os.IsNotExist(err) {
-		fmt.Printf("Can't find token file: %s", err)
+		fmt.Printf("Can't find token file: %s, ADD YOUR GITHUB TOKEN IN backend/svc-contributors/token!!!", err)
+		time.Sleep(5)
 		os.Exit(1)
 	}
 	t, err := ioutil.ReadFile("token")
 	if err != nil {
 		fmt.Printf("Can't read token file: %s", err)
+		time.Sleep(5)
 		os.Exit(1)
 	}
 	token = string(t)
-	if token == "yourtoken" {
-		fmt.Println("CHANGE YOUR GITHUB TOKEN IN backend/svc-contributors/token!!!")
-		os.Exit(1)
-	}
 
-	fmt.Print(token)
-
+	fmt.Println("Found token!")
 	http.HandleFunc("/contributors", contributorsHandler())
 	log.Fatal(http.ListenAndServe(":8000", nil))
 
