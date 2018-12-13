@@ -19,7 +19,7 @@ Steps for running with minikube with docker:
 1. get the ExternalIP field from `kubectl get svc frontend` and navigate there with your browser! 
 
 
-Steps for running with minikube with contained & gvisor and external registry (`myrepo`):
+Steps for running with minikube with containerd & gvisor and external registry (`myrepo`):
 
 1. `git clone github.com/balopat/contribwall`
 1. `printf TOKEN > backend/svc-contributors/token` with your TOKEN
