@@ -24,6 +24,8 @@ spec:
       app: svc-contributors
   template:
     metadata:
+      annotations:
+        io.kubernetes.cri.untrusted-workload: "true"
       labels:
         app: svc-contributors
     spec:

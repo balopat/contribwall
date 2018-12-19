@@ -31,11 +31,10 @@ class App extends Component {
                 console.log(error)
             })
     }
-
     render() {
         return (
             <div className="App">
-                <h1> Wall of contributors for minikube! Hello KubeCon!</h1>
+                <h1> Wall of contributors for minikube!</h1>
                 {this.state.contributors}
             </div>
         );

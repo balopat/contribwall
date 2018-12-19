@@ -3,20 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
-    "merge": ">=1.2.1",
     "cryptiles": ">=4.1.2",
     "macaddress": ">=0.2.9",
+    "merge": ">=1.2.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "^2.1.1",
     "url-parse": ">=1.4.3"
   },
   "proxy": "http://svc-contributors:8000/",
   "scripts": {
-    "start": "HOST='' DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
+    "start": "HOST='0.0.0.0' DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
-

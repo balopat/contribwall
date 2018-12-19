@@ -26,8 +26,6 @@ spec:
       app: frontend
   template:
     metadata:
-      annotations:
-        io.kubernetes.cri.untrusted-workload: "true"
       labels:
         app: frontend
     spec:

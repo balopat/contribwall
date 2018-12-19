@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   local:
-    push: false
+    push: true
   artifacts:
   - image: gcr.io/balintp-gcp-lab/svc-contributors
     context: ./backend/svc-contributors
